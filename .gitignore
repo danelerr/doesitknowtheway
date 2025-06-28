@@ -1,0 +1,76 @@
+# Node modules y dependencias
+node_modules/
+**/node_modules/
+
+# Salidas de build y producción
+dist/
+**/dist/
+build/
+**/build/
+
+# Archivos de entorno
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Logs y reportes
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Cobertura y pruebas
+coverage/
+**/coverage/
+.nyc_output/
+**/.nyc_output/
+*.lcov
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+# MacOS y Windows
+.DS_Store
+Thumbs.db
+
+# Parcel, Vite, Next, Gatsby, Storybook, etc.
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.cache/
+public/
+.out/
+.storybook-out/
+dist-ssr/
+
+# Otros temporales y cachés
+.temp/
+.tmp/
+tmp/
+temp/
+.npm/
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+.rollup.cache
+
+# Archivos de lock y pid
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Reportes de diagnóstico
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
