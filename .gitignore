@@ -1,76 +1,186 @@
-# Node modules y dependencias
-node_modules/
-**/node_modules/
+# ===========================================
+# BACKEND (NestJS) - Archivos a ignorar
+# ===========================================
 
-# Salidas de build y producción
-dist/
-**/dist/
-build/
-**/build/
+# compiled output
+backend/dist/
+backend/build/
+backend/node_modules/
 
-# Archivos de entorno
-.env
-.env.*
-**/.env
-**/.env.*
+# Logs
+backend/logs/
+backend/*.log
+backend/npm-debug.log*
+backend/pnpm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
+backend/lerna-debug.log*
 
-# Logs y reportes
+# Tests
+backend/coverage/
+backend/.nyc_output/
+
+# IDEs and editors
+backend/.idea/
+backend/.project
+backend/.classpath
+backend/.c9/
+backend/*.launch
+backend/.settings/
+backend/*.sublime-workspace
+
+# IDE - VSCode (backend)
+backend/.vscode/*
+!backend/.vscode/settings.json
+!backend/.vscode/tasks.json
+!backend/.vscode/launch.json
+!backend/.vscode/extensions.json
+
+# dotenv environment variable files (backend)
+backend/.env
+backend/.env.development.local
+backend/.env.test.local
+backend/.env.production.local
+backend/.env.local
+
+# temp directory (backend)
+backend/.temp/
+backend/.tmp/
+
+# Runtime data (backend)
+backend/pids/
+backend/*.pid
+backend/*.seed
+backend/*.pid.lock
+
+# Diagnostic reports (backend)
+backend/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Coverage directory (backend)
+backend/coverage/
+backend/*.lcov
+
+# nyc test coverage (backend)
+backend/.nyc_output/
+
+# Dependency directories (backend)
+backend/jspm_packages/
+
+# Snowpack dependency directory (backend)
+backend/web_modules/
+
+# TypeScript cache (backend)
+backend/*.tsbuildinfo
+
+# Optional npm cache directory (backend)
+backend/.npm/
+
+# Optional eslint cache (backend)
+backend/.eslintcache
+
+# Optional REPL history (backend)
+backend/.node_repl_history
+
+# Output of 'npm pack' (backend)
+backend/*.tgz
+
+# Yarn Integrity file (backend)
+backend/.yarn-integrity
+
+# parcel-bundler cache (backend)
+backend/.cache/
+backend/.parcel-cache/
+
+# Next.js build output (backend)
+backend/.next/
+
+# Nuxt.js build / generate output (backend)
+backend/.nuxt/
+
+# Gatsby files (backend)
+backend/public/
+
+# Storybook build outputs (backend)
+backend/.out/
+backend/.storybook-out/
+
+# Temporary folders (backend)
+backend/tmp/
+backend/temp/
+
+# ===========================================
+# FRONTEND (React + Vite) - Archivos a ignorar
+# ===========================================
+
+# Logs (frontend)
+frontend/logs/
+frontend/*.log
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+frontend/lerna-debug.log*
+
+# Dependencies (frontend)
+frontend/node_modules/
+
+# Build outputs (frontend)
+frontend/dist/
+frontend/dist-ssr/
+
+# Local env files (frontend)
+frontend/*.local
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Editor directories and files (frontend)
+frontend/.vscode/*
+!frontend/.vscode/extensions.json
+frontend/.idea/
+frontend/*.suo
+frontend/*.ntvs*
+frontend/*.njsproj
+frontend/*.sln
+frontend/*.sw?
+
+# ===========================================
+# GENERAL - Archivos globales a ignorar
+# ===========================================
+
+# OS files
+.DS_Store
+.DS_Store?
+Thumbs.db
+
+# General logs
 logs/
 *.log
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
 
-# Cobertura y pruebas
-coverage/
-**/coverage/
-.nyc_output/
-**/.nyc_output/
-*.lcov
+# General node_modules (por si acaso)
+node_modules/
 
-# IDEs y editores
+# General dist (por si acaso)
+dist/
+
+# General build (por si acaso)
+build/
+
+# General env files (por si acaso)
+.env
+.env.*
+
+# Editor files (globales)
 .vscode/
 .idea/
-*.sublime-workspace
-*.sublime-project
 *.swp
 *.swo
 *~
 
-# MacOS y Windows
-.DS_Store
-Thumbs.db
-
-# Parcel, Vite, Next, Gatsby, Storybook, etc.
-.cache/
-.parcel-cache/
-.next/
-.nuxt/
-.cache/
-public/
-.out/
-.storybook-out/
-dist-ssr/
-
-# Otros temporales y cachés
+# Temporary files (globales)
 .temp/
 .tmp/
 tmp/
 temp/
-.npm/
-.eslintcache
-.node_repl_history
-*.tgz
-.yarn-integrity
-.rollup.cache
-
-# Archivos de lock y pid
-pids/
-*.pid
-*.seed
-*.pid.lock
-
-# Reportes de diagnóstico
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
