@@ -1,0 +1,454 @@
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Fredoka', sans-serif;
+    background: #4A90E2; /* Color sólido azul */
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Contenedor principal */
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Pantallas */
+.pantalla {
+    display: none;
+    width: 100%;
+    max-width: 800px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.pantalla.activa {
+    display: block;
+}
+
+/* Contenido */
+.contenido {
+    background: #FFFFFF; /* Fondo blanco sólido */
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+}
+
+/* Títulos */
+.titulo-principal {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #4A90E2; /* Azul sólido */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: slideInDown 0.8s ease-out;
+}
+
+.subtitulo {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 40px;
+    animation: slideInUp 0.8s ease-out 0.2s both;
+}
+
+.etapa {
+    font-size: 2rem;
+    color: #F5A623; /* Amarillo sólido */
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Botones */
+.botones-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out 0.4s both;
+}
+
+.boton-principal {
+    background: #4A90E2; /* Azul sólido */
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    min-height: 70px;
+}
+
+.boton-principal:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+    background: #5BA0F2; /* Azul más claro al hover */
+}
+
+.boton-principal:active {
+    transform: scale(0.98);
+}
+
+.boton-secundario {
+    background: #F5A623; /* Amarillo sólido */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.boton-secundario:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(245, 166, 35, 0.4);
+    background: #FFB74D; /* Amarillo más claro al hover */
+}
+
+/* Palabras */
+.palabras-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out 0.4s both;
+}
+
+.boton-palabra {
+    background: #4A90E2; /* Azul sólido */
+    color: white;
+    border: none;
+    padding: 25px 20px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    min-height: 120px;
+    justify-content: center;
+}
+
+.boton-palabra:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+    background: #5BA0F2; /* Azul más claro al hover */
+}
+
+/* Campo de texto */
+.input-container {
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out 0.4s both;
+}
+
+.campo-texto {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    font-size: 1.2rem;
+    border: 3px solid #4A90E2; /* Borde azul sólido */
+    border-radius: 15px;
+    font-family: 'Fredoka', sans-serif;
+    resize: vertical;
+    transition: all 0.3s ease-in-out;
+    background: #FFFFFF; /* Fondo blanco sólido */
+}
+
+.campo-texto:focus {
+    outline: none;
+    border-color: #F5A623; /* Borde amarillo al focus */
+    box-shadow: 0 0 20px rgba(245, 166, 35, 0.3);
+    transform: scale(1.02);
+}
+
+/* Canvas de dibujo */
+.canvas-container {
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out 0.4s both;
+}
+
+.lienzo-dibujo {
+    border: 4px solid #4A90E2; /* Borde azul sólido */
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    cursor: crosshair;
+    transition: all 0.3s ease-in-out;
+}
+
+.lienzo-dibujo:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Iconos - Mejorados para ser más grandes y visibles */
+.icono {
+    font-size: 2.5rem; /* Emojis más grandes */
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Iconos específicos para palabras */
+.icono-silla {
+    font-size: 3rem;
+    color: #8B4513; /* Marrón para silla */
+}
+
+.icono-perro {
+    font-size: 3rem;
+    color: #8B4513; /* Marrón para perro */
+}
+
+.icono-pantalon {
+    font-size: 3rem;
+    color: #4169E1; /* Azul para pantalón */
+}
+
+.icono-tomate {
+    font-size: 3rem;
+    color: #FF4500; /* Rojo para tomate */
+}
+
+.icono-random {
+    font-size: 3rem;
+    color: #FFD700; /* Dorado para random */
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-contenido {
+    background: #FFFFFF; /* Fondo blanco sólido */
+    margin: 15% auto;
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: slideInDown 0.5s ease-out;
+}
+
+.modal-contenido h2 {
+    color: #4A90E2; /* Azul sólido */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.modal-contenido p {
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Clases de animación */
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.slide-left {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+.slide-right {
+    animation: slideInRight 0.5s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contenido {
+        padding: 30px 20px;
+    }
+    
+    .titulo-principal {
+        font-size: 2.5rem;
+    }
+    
+    .subtitulo {
+        font-size: 1.2rem;
+    }
+    
+    .boton-principal {
+        font-size: 1.3rem;
+        padding: 15px 30px;
+        min-height: 60px;
+    }
+    
+    .palabras-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .boton-palabra {
+        font-size: 1.1rem;
+        padding: 20px 15px;
+        min-height: 100px;
+    }
+    
+    .lienzo-dibujo {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+    }
+    
+    .icono {
+        font-size: 2rem; /* Emojis más pequeños en móvil pero aún visibles */
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-principal {
+        font-size: 2rem;
+    }
+    
+    .botones-container {
+        gap: 15px;
+    }
+    
+    .palabras-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-contenido {
+        margin: 20% auto;
+        padding: 30px 20px;
+    }
+    
+    .icono {
+        font-size: 1.8rem; /* Emojis apropiados para pantallas muy pequeñas */
+    }
+}
+
+/* Efectos especiales simplificados */
+.contenido {
+    position: relative;
+}
+
+.contenido::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: #F5A623; /* Borde amarillo sólido */
+    border-radius: 25px;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+/* Estados de carga */
+.cargando {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.cargando::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 3px solid #4A90E2; /* Azul sólido */
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+} 
