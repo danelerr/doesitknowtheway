@@ -1,11 +1,263 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ConverZaap - Mundo de Palabras y Frases</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="images.css">
 </head>
 <body>
-    
+    <!-- Pantalla 1: Bienvenida -->
+    <section id="pantalla-1" class="pantalla activa">
+        <div class="contenedor">
+            <div class="contenido fade-in">
+                <h1 class="titulo-principal" style="color: #F5A623;" >  ConverZaap</h1>
+                <p class="subtitulo">Bienvenidos a un mundo de palabras y frases</p>
+                
+                <div style="color: #F5A623;"class="botones-container" >
+                    <button class="boton-principal" onclick="navegarA('pantalla-2')">
+                        <span class="icono">🎮</span>
+                        JUGAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantalla 2: Modos de Juego -->
+    <section id="pantalla-2" class="pantalla">
+        <div class="contenedor">
+            <div class="contenido fade-in">
+                <h1 class="titulo-principal">MODOS DE JUEGO</h1>
+                
+                <div class="botones-container">
+                    <button class="boton-principal" onclick="navegarA('pantalla-5')">
+                        <span class="icono">🎨</span>
+                        DIBUJOS
+                    </button>
+                    <button class="boton-principal" onclick="navegarA('pantalla-3')">
+                        <span class="icono">💬</span>
+                        FRASES
+                    </button>
+                </div>
+                
+                <button class="boton-secundario" onclick="navegarA('pantalla-1')">
+                    <span class="icono">🏠</span>
+                    Volver
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantalla 3: Selecciona una Palabra -->
+    <section id="pantalla-3" class="pantalla">
+        <div class="contenedor">
+            <div class="contenido fade-in">
+                <h1 class="titulo-principal">SELECCIONA UNA PALABRA</h1>
+                <p class="subtitulo">Debes describir la palabra con una oración.</p>
+                
+                <div class="palabras-container">
+                    <button class="boton-palabra" onclick="seleccionarPalabra('Silla')">
+                        <span class="icono icono-silla">🪑</span>
+                        Silla
+                    </button>
+                    <button class="boton-palabra" onclick="seleccionarPalabra('Perro')">
+                        <span class="icono icono-perro">🐕</span>
+                        Perro
+                    </button>
+                    <button class="boton-palabra" onclick="seleccionarPalabra('Pantalón')">
+                        <span class="icono icono-pantalon">👖</span>
+                        Pantalón
+                    </button>
+                    <button class="boton-palabra" onclick="seleccionarPalabra('Tomate')">
+                        <span class="icono icono-tomate">🍅</span>
+                        Tomate
+                    </button>
+                    <button class="boton-palabra" onclick="seleccionarPalabraAleatoria()">
+                        <span class="icono icono-random">🎲</span>
+                        Random
+                    </button>
+                </div>
+                
+                <button class="boton-secundario" onclick="navegarA('pantalla-1')">
+                    <span class="icono">🏠</span>
+                    Volver
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantalla 4: Describir Palabra -->
+    <section id="pantalla-4" class="pantalla">
+        <div class="contenedor">
+            <div class="contenido fade-in">
+                <h1 class="titulo-principal" id="palabra-seleccionada">Palabra</h1>
+                <p class="subtitulo">Escribe tu oración.</p>
+                
+                <div class="input-container">
+                    <textarea 
+                        id="descripcion-texto" 
+                        class="campo-texto" 
+                        placeholder="Escribe aquí tu descripción..."
+                        rows="4"
+                    ></textarea>
+                </div>
+                
+                <div class="botones-container">
+                    <button class="boton-principal" onclick="guardarDescripcion()">
+                        <span class="icono">💾</span>
+                        Guardar
+                    </button>
+                    <button class="boton-secundario" onclick="navegarA('pantalla-3')">
+                        <span class="icono">⬅️</span>
+                        Volver
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantalla 5: Adivina Dibujando - Etapa 1 -->
+    <section id="pantalla-5" class="pantalla">
+        <div class="contenedor">
+            <div class="contenido fade-in">
+                <h1 class="titulo-principal">ADIVINA DIBUJANDO</h1>
+                <h2 class="etapa">Etapa 1</h2>
+                
+                <div class="canvas-container">
+                    <canvas id="canvas-1" class="lienzo-dibujo" width="400" height="300"></canvas>
+                </div>
+                
+                <div class="botones-container">
+                    <button class="boton-principal" onclick="navegarA('pantalla-6')">
+                        <span class="icono">✅</span>
+                        Listo
+                    </button>
+                    <button class="boton-secundario" onclick="navegarA('pantalla-1')">
+                        <span class="icono">🏠</span>
+                        Volver
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantalla 6: Adivina Dibujando - Etapa 2 -->
+    <section id="pantalla-6" class="pantalla">
+        <div class="contenedor">
+            <div class="contenido fade-in">
+                <h1 class="titulo-principal">ADIVINA DIBUJANDO</h1>
+                <h2 class="etapa">Etapa 2</h2>
+                
+                <div class="canvas-container">
+                    <canvas id="canvas-2" class="lienzo-dibujo" width="400" height="300"></canvas>
+                </div>
+                
+                <div class="botones-container">
+                    <button class="boton-principal" onclick="navegarA('pantalla-7')">
+                        <span class="icono">✅</span>
+                        Listo
+                    </button>
+                    <button class="boton-secundario" onclick="navegarA('pantalla-5')">
+                        <span class="icono">⬅️</span>
+                        Volver
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantalla 7: Adivina Dibujando - Etapa 3 -->
+    <section id="pantalla-7" class="pantalla">
+        <div class="contenedor">
+            <div class="contenido fade-in">
+                <h1 class="titulo-principal">ADIVINA DIBUJANDO</h1>
+                <h2 class="etapa">Etapa 3</h2>
+                
+                <div class="canvas-container">
+                    <canvas id="canvas-3" class="lienzo-dibujo" width="400" height="300"></canvas>
+                </div>
+                
+                <div class="botones-container">
+                    <button class="boton-principal" onclick="navegarA('pantalla-8')">
+                        <span class="icono">✅</span>
+                        Listo
+                    </button>
+                    <button class="boton-secundario" onclick="navegarA('pantalla-6')">
+                        <span class="icono">⬅️</span>
+                        Volver
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantalla 8: Adivina Dibujando - Etapa 4 -->
+    <section id="pantalla-8" class="pantalla">
+        <div class="contenedor">
+            <div class="contenido fade-in">
+                <h1 class="titulo-principal">ADIVINA DIBUJANDO</h1>
+                <h2 class="etapa">Etapa 4</h2>
+                
+                <div class="canvas-container">
+                    <canvas id="canvas-4" class="lienzo-dibujo" width="400" height="300"></canvas>
+                </div>
+                
+                <div class="botones-container">
+                    <button class="boton-principal" onclick="navegarA('pantalla-9')">
+                        <span class="icono">✅</span>
+                        Listo
+                    </button>
+                    <button class="boton-secundario" onclick="navegarA('pantalla-7')">
+                        <span class="icono">⬅️</span>
+                        Volver
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantalla 9: Adivina Dibujando - Etapa 5 -->
+    <section id="pantalla-9" class="pantalla">
+        <div class="contenedor">
+            <div class="contenido fade-in">
+                <h1 class="titulo-principal">ADIVINA DIBUJANDO</h1>
+                <h2 class="etapa">Etapa 5</h2>
+                
+                <div class="canvas-container">
+                    <canvas id="canvas-5" class="lienzo-dibujo" width="400" height="300"></canvas>
+                </div>
+                
+                <div class="botones-container">
+                    <button class="boton-principal" onclick="finalizarJuego()">
+                        <span class="icono">🎉</span>
+                        Listo
+                    </button>
+                    <button class="boton-secundario" onclick="navegarA('pantalla-8')">
+                        <span class="icono">⬅️</span>
+                        Volver
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Juego Finalizado -->
+    <div id="modal-finalizado" class="modal">
+        <div class="modal-contenido">
+            <h2>¡Juego Finalizado!</h2>
+            <p>¡Felicitaciones por completar todas las etapas!</p>
+            <button class="boton-principal" onclick="cerrarModal()">
+                <span class="icono">🏠</span>
+                Volver al Inicio
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
