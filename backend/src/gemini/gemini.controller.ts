@@ -1,21 +1,29 @@
+import { Controller, Post, Body, BadRequestException } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
+import { GeminiService } from '../ai/gemini.service';
 import {
-  Controller,
-  Post,
-  Body,
-  UseInterceptors,
-  UploadedFile,
-  UploadedFiles,
-  BadRequestException,
-} from '@nestjs/common';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { GeminiService } from './gemini.service';
+  GuessWordSwaggerDto,
+  GuessDrawSwaggerDto,
+  GuessSituationSwaggerDto,
+  AIGuessResponseDto,
+  AISituationResponseDto,
+} from '../common/swagger.dto';
 
 @Controller('gemini')
+@ApiTags('gemini')
 export class GeminiController {
   constructor(private readonly geminiService: GeminiService) {}
 
-  @Post('gess-word')
-  async guessWord(@Body() body: { text: string }) {
+  @Post('guess-word')
+  @ApiOperation({ summary: 'IA adivina palabra desde texto (legacy endpoint)' })
+  @ApiBody({ type: GuessWordSwaggerDto })
+  @ApiResponse({
+    status: 200,
+    description: 'Análisis completado',
+    type: AIGuessResponseDto,
+  })
+  @ApiResponse({ status: 400, description: 'Datos inválidos' })
+  async guessWord(@Body() body: { text: string; hiddenWord?: string }) {
     if (!body.text) {
       throw new BadRequestException('Text is required');
     }
@@ -25,26 +33,59 @@ export class GeminiController {
       throw new BadRequestException('Text must be maximum 20 words');
     }
 
-    return await this.geminiService.guessWord(body.text);
+    const result = await this.geminiService.guessFromText(
+      body.text,
+      body.hiddenWord,
+    );
+    return result;
   }
 
-  @Post('gess-draw')
-  @UseInterceptors(FileInterceptor('image'))
-  async guessDraw(@UploadedFile() file: Express.Multer.File) {
-    if (!file) {
-      throw new BadRequestException('Image file is required');
+  @Post('guess-draw')
+  @ApiOperation({ summary: 'IA adivina dibujo desde imagen (legacy endpoint)' })
+  @ApiBody({ type: GuessDrawSwaggerDto })
+  @ApiResponse({
+    status: 200,
+    description: 'Análisis completado',
+    type: AIGuessResponseDto,
+  })
+  @ApiResponse({ status: 400, description: 'Imagen requerida' })
+  async guessDraw(@Body() body: { imageBase64: string }) {
+    if (!body.imageBase64) {
+      throw new BadRequestException('Image is required');
     }
 
-    return await this.geminiService.guessDraw(file);
+    const result = await this.geminiService.guessDrawing(body.imageBase64);
+    return result;
   }
 
-  @Post('gess-situation')
-  @UseInterceptors(FilesInterceptor('images', 5))
-  async guessSituation(@UploadedFiles() files: Express.Multer.File[]) {
-    if (!files || files.length !== 5) {
-      throw new BadRequestException('Exactly 5 images are required');
+  @Post('guess-situation')
+  @ApiOperation({
+    summary: 'IA analiza situación desde múltiples imágenes (legacy endpoint)',
+  })
+  @ApiBody({ type: GuessSituationSwaggerDto })
+  @ApiResponse({
+    status: 200,
+    description: 'Análisis completado',
+    type: AISituationResponseDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Array de imágenes requerido (máx 5)',
+  })
+  async guessSituation(@Body() body: { images: string[] }) {
+    if (
+      !body.images ||
+      !Array.isArray(body.images) ||
+      body.images.length === 0
+    ) {
+      throw new BadRequestException('Images array is required');
     }
 
-    return await this.geminiService.guessSituation(files);
+    if (body.images.length > 5) {
+      throw new BadRequestException('Maximum 5 images allowed');
+    }
+
+    const result = await this.geminiService.analyzeSituation(body.images);
+    return result;
   }
 }
