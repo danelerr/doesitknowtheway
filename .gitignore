@@ -53,6 +53,8 @@ backend/*.pid
 backend/*.seed
 backend/*.pid.lock
 
+description.md
+
 # Diagnostic reports (backend)
 backend/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
